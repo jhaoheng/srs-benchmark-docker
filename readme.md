@@ -1,4 +1,4 @@
-# how to use
+# Quick start
 
 1. `docker-compose up -d`
 2. 開新 terminal, 查看 srs-log : `docker exec srs-benchmark-ossrs tail -f ./objs/srs.log`
@@ -40,4 +40,4 @@
     - `./objs/sb_rtmp_load`
     - `./objs/sb_rtmp_load_fast`
     - `./objs/sb_rtmp_publish`
-
+- 詳細請搜尋 sb_rtmp_publish or sb_rtmp_load
