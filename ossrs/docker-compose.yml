@@ -3,15 +3,13 @@ services:
   ossrs:
     build:
       context: .
-      dockerfile: Dockerfile-ossrs
-    image: ossrsForTest
+      dockerfile: Dockerfile
+    image: ossrs
     container_name: ossrs
     ports:
       - 1935:1935/tcp
     volumes:
       - ./srs-conf:/opt/srs/trunk/conf
-    working_dir: /opt/srs/trunk
-    tty: true
   netdata:
     build: .
     image: firehol/netdata:tmp
