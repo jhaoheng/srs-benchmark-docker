@@ -1,0 +1,21 @@
+version: "3"
+services:
+  ossrs:
+    build:
+      context: .
+      dockerfile: Dockerfile-ossrs
+    image: srs-benchmark-ossrs
+    container_name: ossrs
+    ports:
+      - 1935:1935/tcp
+    volumes:
+      - ./srs-conf:/opt/srs/trunk/conf
+    working_dir: /opt/srs/trunk
+    tty: true
+  netdata:
+    build: .
+    image: firehol/netdata:tmp
+    ports: 
+      - 19999:19999/tcp
+    tty: true
+    container_name: netdata-srs

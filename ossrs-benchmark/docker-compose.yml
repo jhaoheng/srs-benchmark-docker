@@ -1,0 +1,18 @@
+version: "3"
+services:
+  srs-benchmark:
+    build: 
+      context: .
+      dockerfile: ossrs-benchmark
+    image: srs-benchmark-tool
+    container_name: srs-benchmark-tool
+    volumes:
+      - ./benchmark-resource:/home/benchmark-resource
+    tty: true
+  netdata:
+    build: .
+    image: firehol/netdata:tmp
+    ports: 
+      - 19999:19999/tcp
+    container_name: netdata
+    tty: true
