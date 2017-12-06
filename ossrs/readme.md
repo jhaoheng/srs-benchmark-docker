@@ -1,9 +1,13 @@
 # ossrs
 
+- `docker login quay.io`
 - 使用編譯好的 ossrs 當作 image base
 - 設定檔 ./ossrs_benchmark/srs-conf/srs.conf
 	- 在執行 docker 後，會自動掛載
 - 查詢 srs log : `docker exec srs-benchmark-ossrs tail -f ./objs/srs.log`
+
+# test streaming
+
 
 # 查詢測試數據 : 
 > 先進入 `docker exec -it ossrs /bin/bash`
