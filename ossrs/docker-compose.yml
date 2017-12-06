@@ -11,9 +11,7 @@ services:
     volumes:
       - ./srs-conf:/opt/srs/trunk/conf
   netdata:
-    build: .
-    image: firehol/netdata:tmp
+    image: firehol/netdata
     ports: 
       - 19999:19999/tcp
-    tty: true
-    container_name: netdata-srs
+    container_name: netdata
