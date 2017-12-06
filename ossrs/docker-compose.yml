@@ -9,9 +9,8 @@ services:
     ports:
       - 1935:1935/tcp
     volumes:
-      - ./srs-conf:/opt/srs/trunk/conf
-      - ./entrypoint.sh:/opt/srs/trunk/entrypoint.sh
-    entrypoint: /opt/srs/trunk/entrypoint.sh
+      - ./srs-conf/srs.conf:/opt/srs/trunk/conf/srs.conf
+    command: sh -c "/opt/srs/trunk/objs/srs -c /opt/srs/trunk/conf/srs.conf"
   netdata:
     image: firehol/netdata
     ports: 
