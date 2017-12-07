@@ -8,6 +8,9 @@
 
 # test streaming
 
+```
+ffmpeg -re -stream_loop -1 -i /Users/maxhu/Desktop/test2.mp4 -vcodec libx264 -acodec aac -f flv "rtmp://{host}/demo/video"
+```
 
 # 查詢測試數據 : 
 > 先進入 `docker exec -it ossrs /bin/bash`
