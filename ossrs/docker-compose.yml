@@ -9,6 +9,7 @@ services:
     ports:
       - 1935:1935/tcp
     volumes:
+      - ./script:/opt/srs/trunk/benchmark-script
       - ./srs-conf/srs.conf:/opt/srs/trunk/conf/srs.conf
     command: sh -c "/opt/srs/trunk/objs/srs -c /opt/srs/trunk/conf/srs.conf"
   netdata:
