@@ -9,3 +9,6 @@
 	- ref ossrs-benchmark/readme.md
 
 
+# netdata
+
+- ossrs & benchmark include `netdata` application in docker-compose.yml. When build container success, you could use `http://{host}:19999` to monitor some data.
