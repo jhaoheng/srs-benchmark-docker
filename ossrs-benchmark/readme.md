@@ -11,14 +11,18 @@
 
 # how
 
-1. `docker-compose up -d` 
-	- pull `firehol/netdata`
-	- build benchmark tool
-2. example : `docker run srs-benchmark-tool {cmd}`
-	- {cmd} : `./objs/sb_rtmp_publish -i ./video-resource/test.mp4  -c 1 -r rtmp://54.183.109.138:1935/live/livestream`
-		- `-c` : clients
-		- `-r` : url
+## build container
+1. build tool
+	- `docker build -t tool .`
+2. build netdata to monitor info
+	- `docker-compose up -d`
 
+## run bench-mark
+
+1. `docker run -it -v $(pwd)/video-resource:/home/srs-bench/video-resource tool /bin/bash`
+2. `./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://54.183.109.138:1935/live/livestream`
+	- `-c` : clients
+	- `-r` : url
 
 # benchmark ref
 ## sb_rtmp_publish
