@@ -1,14 +1,5 @@
 version: "3"
 services:
-  srs-benchmark:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    image: srs-benchmark-tool
-    container_name: srs-benchmark-tool
-    working_dir: /home/srs-bench
-    volumes:
-      - ./video-resource:/home/srs-bench/video-resource
   netdata:
     image: firehol/netdata
     ports: 
