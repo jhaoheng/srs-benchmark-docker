@@ -12,17 +12,24 @@
 # how
 
 ## build container
-1. build tool
+1. build tool image
 	- `docker build -t tool .`
-2. build netdata to monitor info
-	- `docker-compose up -d`
+2. build service : `docker-compose up -d`
 
 ## run bench-mark
 
-1. `docker run -it -v $(pwd)/video-resource:/home/srs-bench/video-resource tool /bin/bash`
-2. `./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://54.183.109.138:1935/live/livestream`
-	- `-c` : clients
-	- `-r` : url
+### start
+1. edit 'benchmark.sh' 
+  - ossrs_endpoint : 
+  - max_publishers : 
+  - film_resource :
+2. enter srs-bench container : `docker exec -it srs-bench /bin/bash`
+3. check 'benchmark.sh' , then `. benchmark.sh start`
+
+> how to verify client success connect to ossrs, check ossrs readme.md
+
+### stop
+- `. benchmark.sh stop`
 
 # benchmark ref
 ## sb_rtmp_publish

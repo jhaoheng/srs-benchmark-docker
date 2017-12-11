@@ -1,5 +1,12 @@
 version: "3"
 services:
+  benchmark:
+    image:  tool
+    tty:  true
+    volumes:
+      - ./video-resource:/home/srs-bench/video-resource
+      - ./benchmark.sh:/home/srs-bench/benchmark.sh
+    container_name:  ossrs-bench
   netdata:
     image: firehol/netdata
     ports: 
