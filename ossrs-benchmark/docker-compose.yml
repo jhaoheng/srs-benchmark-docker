@@ -12,3 +12,5 @@ services:
     ports: 
       - 19999:19999/tcp
     container_name: netdata
+    tty: true
+    command: sh -c "/usr/sbin/netdata && /bin/bash"

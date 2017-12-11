@@ -11,9 +11,11 @@ services:
     volumes:
       - ./script:/opt/srs/trunk/benchmark-script
       - ./srs-conf/srs.conf:/opt/srs/trunk/conf/srs.conf
-    command: sh -c "/opt/srs/trunk/objs/srs -c /opt/srs/trunk/conf/srs.conf"
+    command: "/opt/srs/trunk/objs/srs -c /opt/srs/trunk/conf/srs.conf"
   netdata:
     image: firehol/netdata
     ports: 
       - 19999:19999/tcp
     container_name: netdata
+    tty: true
+    command: sh -c "/usr/sbin/netdata && /bin/bash"
