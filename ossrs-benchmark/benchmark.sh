@@ -19,8 +19,8 @@ fi
 
 
 # config
-ossrs_endpoint="192.168.47.133"
-max_publishers=2
+ossrs_endpoint="54.183.109.138"
+max_publishers=500
 film_resource="./video-resource/test.flv"
 
 
@@ -35,8 +35,9 @@ echo "-----"
 
 for (( i = 0; i < $max_publishers; i++ )); do
 	#statements
-	echo "========> "$(date +%T) " : " $((i+1))
-	pub="./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://$ossrs_endpoint/live/$i"
+	point=$((i+1))
+	echo "========> "$(date +%T) " : " $point
+	pub="./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://$ossrs_endpoint/live/$point"
 	echo $pub
 	$pub &>/dev/null &
 done
