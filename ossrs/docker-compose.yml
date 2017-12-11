@@ -8,6 +8,7 @@ services:
     container_name: ossrs
     ports:
       - 1935:1935/tcp
+      - 1985:1985/tcp
     volumes:
       - ./script:/opt/srs/trunk/benchmark-script
       - ./srs-conf/srs.conf:/opt/srs/trunk/conf/srs.conf
