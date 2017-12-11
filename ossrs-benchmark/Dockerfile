@@ -1,7 +1,7 @@
 FROM		ubuntu:16.04
 
 RUN			apt-get update && \
-	 		apt-get install git unzip make gcc g++ -y && \
+	 		apt-get install git unzip make gcc g++ vim -y && \
 	 		apt-get install psmisc
 
 
