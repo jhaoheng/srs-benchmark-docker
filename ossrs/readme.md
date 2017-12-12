@@ -1,18 +1,54 @@
-# ossrs
+# ossrs build
+1. create instance
+2. docker/docker-compose install
+3. `docker login quay.io`
+4. `docker-compose up -d`
+5. check log : `docker exec srs-benchmark-ossrs tail -f ./objs/srs.log`
+6. check receiver(use ffmpeg)
+	1. publish : `ffmpeg -re -stream_loop -1 -i {your_video} -vcodec libx264 -acodec aac -f flv "rtmp://{ossrs_host}/demo/video"`
+	2. check log, could see the streaming input.
 
-- `docker login quay.io`
-- 使用編譯好的 ossrs 當作 image base
-- 設定檔 ./ossrs_benchmark/srs-conf/srs.conf
-	- 在執行 docker 後，會自動掛載
-- 查詢 srs log : `docker exec srs-benchmark-ossrs tail -f ./objs/srs.log`
 
-# test streaming
+# 查詢壓力資訊
+1. 透過 netdata : `http://{ip}:19999`
+2. 透過 ossrs api
 
+
+# ossrs api
+> ref : https://github.com/ossrs/srs/wiki/v2_CN_HTTPApi#server-id
+> 在 browser 中，安裝 chrome plugin : json formatter
+
+- 透過 browser 查詢 client 連線資料 : `http://{ip}:1985/api/v1/clients/`
+- streams : `http://{ip}:1985/api/v1/streams/`
+	- 這個是累加的數據，若要監控此數據，每次 benchmark 推完，都要透過 `docker-compose restart` 進行重起的動作
+- 查看所有 vhost 的連接狀態 : `http://{ip}:1985/api/v1/vhosts/` , 以下範例為壓力測試 700 用戶數
 ```
-ffmpeg -re -stream_loop -1 -i /Users/maxhu/Desktop/test2.mp4 -vcodec libx264 -acodec aac -f flv "rtmp://{host}/demo/video"
+{
+	"code": 0,
+	"server": 1,
+	"vhosts": [
+		{
+			"id": 2,
+			"name": "__defaultVhost__",
+			"enabled": true,
+			"clients": 700,
+			"streams": 700,
+			"send_bytes": 2931600,
+			"recv_bytes": 268977617,
+			"kbps": {
+				"recv_30s": 0,
+				"send_30s": 0
+			},
+			"hls": {
+				"enabled": false
+			}
+		}
+	]
+}
 ```
+- 查看系統總結 : `/api/v1/summaries`
 
-# 查詢測試數據 : 
+# other : 查詢測試數據 : 
 > 先進入 `docker exec -it ossrs /bin/bash`
 
 - 查看系統資源

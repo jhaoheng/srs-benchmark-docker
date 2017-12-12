@@ -35,9 +35,9 @@ echo "-----"
 
 for (( i = 0; i < $max_publishers; i++ )); do
 	#statements
-	point=$((i+1))
-	echo "========> "$(date +%T) " : " $point
-	pub="./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://$ossrs_endpoint/live/$point"
+	user=$((i+1))
+	echo "========> "$(date +%T) " : " $user
+	pub="./objs/sb_rtmp_publish -i ./video-resource/test.flv -c 1 -r rtmp://$ossrs_endpoint/live/$user"
 	echo $pub
 	$pub &>/dev/null &
 done

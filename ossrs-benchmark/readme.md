@@ -1,6 +1,27 @@
+# tool build
+1. create instance
+2. install docker / docker-compose
+3. build tool image
+  - `docker build -t tool .`
+4. build service : `docker-compose up -d`
+
+# how use
+## start
+1. `docker exec -it ossrs-bench /bin/bash`
+2. edit 'benchmark.sh' 
+  - ossrs_endpoint : 
+  - max_publishers : 
+  - film_resource :
+3. check 'benchmark.sh' , then `. benchmark.sh start`
+4. how to verify client success connect to ossrs, check ossrs readme.md
+
+## stop
+- `. benchmark.sh stop`
+
+# watch publisher sys resource by 'netdata'
+- http://{ip}:19999
 
 # srs-benchmark-tool
-
 - you can use:
 	- `./objs/sb_http_load`
     - `./objs/sb_hls_load`
@@ -9,29 +30,6 @@
     - `./objs/sb_rtmp_publish`
 - 詳細請搜尋 sb_rtmp_publish or sb_rtmp_load
 
-# how
-
-## build container
-1. build tool image
-	- `docker build -t tool .`
-2. build service : `docker-compose up -d`
-
-## run bench-mark
-
-### start
-1. edit 'benchmark.sh' 
-  - ossrs_endpoint : 
-  - max_publishers : 
-  - film_resource :
-2. enter srs-bench container : `docker exec -it srs-bench /bin/bash`
-3. check 'benchmark.sh' , then `. benchmark.sh start`
-
-> how to verify client success connect to ossrs, check ossrs readme.md
-
-### stop
-- `. benchmark.sh stop`
-
-# benchmark ref
 ## sb_rtmp_publish
 
 ```
